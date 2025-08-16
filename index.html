@@ -1,10 +1,83 @@
 <!DOCTYPE html>
 <html lang="pl">
+
 <head>
     <meta charset="UTF-8">
-    <title>Moje portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Bartek</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <h1>Cześć, tu moje portfolio!</h1>
+    <header>
+        <h1>Portfolio</h1>
+    </header>
+
+    <nav id="nawigacja">
+        <ul>
+            <li><a href="#" data-section="o-mnie"><span class="ikona"><i class="fa-solid fa-user"></i></span><span
+                        class="nazwa">O MNIE</span></a></li>
+            <li><a href="#" data-section="cv"><span class="ikona"><i class="fa-solid fa-book"></i></span><span
+                        class="nazwa">CV</span></a></li>
+            <li><a href="#" data-section="projekty"><span class="ikona"><i class="fa-solid fa-pen"></i></span><span
+                        class="nazwa">PROJEKTY</span></a></li>
+            <li><a href="#" data-section="kontakt"><span class="ikona"><i class="fa-solid fa-comment"></i></span><span
+                        class="nazwa">KONTAKT</span></a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="left">
+            <img src="photo.png" alt="Moje zdjęcie" style="width:70%; border-radius:12px;">
+            <h2>Bartek</h2>
+            <p>Krótki opis o sobie...</p>
+        </section>
+
+        <section id="right">
+            <div class="content" id="o-mnie">
+                <h2>O mnie</h2>
+                <p>Tu możesz napisać kilka słów o sobie...</p>
+            </div>
+
+            <div class="content" id="cv">
+                <h2>CV</h2>
+                <p>Treść Twojego CV lub link do pliku PDF</p>
+            </div>
+
+            <div class="content" id="projekty">
+                <h2>Projekty</h2>
+                <p>Opis projektów lub galeria</p>
+            </div>
+
+            <div class="content" id="kontakt">
+                <h2>Kontakt</h2>
+                <p>Email: kontakt@twojadomena.pl</p>
+            </div>
+        </section>
+    </main>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const links = document.querySelectorAll('#nawigacja a');
+            const sections = document.querySelectorAll('#right .content');
+
+            function showSection(id) {
+                sections.forEach(sec => sec.classList.remove('active'));
+                document.getElementById(id).classList.add('active');
+            }
+
+            links.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = this.getAttribute('data-section');
+                    showSection(target);
+                });
+            });
+
+            // domyślnie pokaż pierwszą sekcję
+            showSection('o-mnie');
+        });
+    </script>
 </body>
+
 </html>
